@@ -15,5 +15,13 @@ module Whitespace
         end
       end
     end
+
+    describe "::is_binop?" do
+      it "returns true for the binary operators :add, :sub, :mul, :div, :mod" do
+        [:add, :sub, :mul, :div, :mod].each do |op|
+          expect(Util.is_binop?(op)).must_equal true
+        end
+      end
+    end
   end
 end
