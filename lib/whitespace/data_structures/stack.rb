@@ -14,7 +14,8 @@ module Whitespace
     end
 
     def top
-      @elements.last
+      return @elements.last unless @elements.empty?
+      raise EmptyError
     end
 
     def size

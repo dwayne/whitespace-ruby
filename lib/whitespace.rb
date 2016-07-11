@@ -4,4 +4,6 @@ module Whitespace
   class AddressError < Error; end
 end
 
+require_relative "whitespace/util"
 require_relative "whitespace/vm"
+require_relative "whitespace/isa"

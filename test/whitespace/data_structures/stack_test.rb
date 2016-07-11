@@ -35,8 +35,8 @@ module Whitespace
 
     describe "#top" do
       describe "when the stack is empty" do
-        it "returns nil" do
-          expect(@stack.top).must_equal nil
+        it "raises Whitespace::EmptyError" do
+          expect { @stack.top }.must_raise EmptyError
         end
       end
 
