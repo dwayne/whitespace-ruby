@@ -39,7 +39,14 @@ module Whitespace::ISA
         end
       end
 
-      # TODO: Test for division by 0
+      describe "division by 0" do
+        it "raises ZeroDivisionError" do
+          @vm.vstack.push 1
+          @vm.vstack.push 0
+
+          expect { Div.new(@vm).execute }.must_raise ZeroDivisionError
+        end
+      end
     end
   end
 end
