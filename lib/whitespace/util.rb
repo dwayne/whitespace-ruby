@@ -8,6 +8,18 @@ module Whitespace
       def is_binop?(op)
         BINOPS.include? op
       end
+
+      def is_label?(name)
+        name.instance_of?(String) && !/\A[ \t]+\z/.match(name).nil?
+      end
+
+      def find_label(instructions, name)
+        instructions.each_with_index do |instr, i|
+          return i if instr.instance_of?(ISA::Label) && instr.name == name
+        end
+
+        raise LabelError, "missing: \"#{name}\""
+      end
     end
 
     BINOPS = {
