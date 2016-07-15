@@ -1,3 +1,4 @@
+require_relative "data_structures/console"
 require_relative "data_structures/counter"
 require_relative "data_structures/memory"
 require_relative "data_structures/stack"

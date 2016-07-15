@@ -16,6 +16,22 @@ module Whitespace
       end
     end
 
+    describe "::is_ascii?" do
+      it "returns true if the value is within a certain subset of the " \
+          "ASCII character set" do
+        [10, 13, 32, 65, 127].each do |v|
+          expect(Util.is_ascii?(v)).must_equal true
+        end
+      end
+
+      it "returns false if the value is not within a certain subset of the " \
+          "ASCII character set" do
+        [-10, 0, 31, 128, 255, 1023, 1000000000].each do |v|
+          expect(Util.is_ascii?(v)).must_equal false
+        end
+      end
+    end
+
     describe "::is_binop?" do
       it "returns true for the binary operators :add, :sub, :mul, :div, :mod" do
         [:add, :sub, :mul, :div, :mod].each do |op|

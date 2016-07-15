@@ -5,6 +5,10 @@ module Whitespace
         n.is_a? Integer
       end
 
+      def is_ascii?(n)
+        n == 10 || n == 13 || (n >= 32 && n <= 127)
+      end
+
       def is_binop?(op)
         BINOPS.include? op
       end
