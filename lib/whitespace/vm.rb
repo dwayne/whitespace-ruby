@@ -19,7 +19,11 @@ module Whitespace
     def run
       reset
 
-      # TODO: Execute instructions
+      loop do
+        instruction = instructions.fetch pc
+        pc.increment
+        execute instruction
+      end
     end
 
     private
@@ -29,6 +33,12 @@ module Whitespace
       @cstack = Stack.new   # a call stack
       @memory = Memory.new  # heap memory
       @pc     = Counter.new # program counter
+    end
+
+    def execute(instruction)
+      instruction.execute
+    rescue Halt
+      raise StopIteration
     end
   end
 end
