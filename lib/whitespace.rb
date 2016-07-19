@@ -7,6 +7,7 @@ module Whitespace
   class ParseError < Error; end
 end
 
+require_relative "whitespace/version"
 require_relative "whitespace/util"
 require_relative "whitespace/vm"
 require_relative "whitespace/isa"
