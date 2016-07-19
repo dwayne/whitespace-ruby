@@ -1,5 +1,7 @@
 module Whitespace::ISA
   class Push < Instruction
+    attr_reader :n
+
     def initialize(vm, n)
       unless Whitespace::Util.is_integer?(n)
         raise ArgumentError, "must be an integer: #{n}"
@@ -9,7 +11,7 @@ module Whitespace::ISA
     end
 
     def execute
-      vm.vstack.push @n
+      vm.vstack.push n
     end
   end
 end

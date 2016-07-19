@@ -1,5 +1,7 @@
 module Whitespace::ISA
   class Putc < Instruction
+    attr_reader :console
+
     def initialize(vm, console)
       super(vm)
       @console = console
@@ -7,7 +9,7 @@ module Whitespace::ISA
 
     def execute
       n = vm.vstack.pop
-      @console.printc n
+      console.printc n
     end
   end
 end
