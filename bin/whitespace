@@ -7,9 +7,14 @@ require_relative "../lib/whitespace"
 def main
   require "optparse"
   options = {}
-  OptionParser.new do |opts|
+  opts = OptionParser.new do |opts|
     executable_name = File.basename($PROGRAM_NAME)
-    opts.banner = "Usage: #{executable_name} [options] filename"
+    opts.banner = <<-BANNER
+A Whitespace interpreter written in Ruby.
+
+Usage: #{executable_name} [options] filename
+
+    BANNER
 
     opts.on("-v", "--version", "Show version information, then exit") do
       puts Whitespace::VERSION
@@ -20,11 +25,14 @@ def main
       puts opts
       exit
     end
-  end.parse!
+  end
+  opts.parse!
 
   nargs = ARGV.length
-  raise ArgumentError, "Too few arguments" if nargs == 0
-  raise ArgumentError, "Too many arguments" if nargs > 1
+  if nargs == 0 || nargs > 1
+    puts opts
+    exit 1
+  end
 
   abs_filename = File.expand_path(ARGV[0])
   src = File.new(abs_filename).read
